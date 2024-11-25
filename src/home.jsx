@@ -6,7 +6,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        navigate("/index.html")
+        navigate("/home.html")
     },[]);
 
   return (
