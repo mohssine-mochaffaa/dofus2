@@ -47,7 +47,7 @@ function App() {
 }
 
 function NotFound() {
-  return <div>Page Not Found</div>;
+  return <div>Please refresh the page - Veuillez actualiser la page</div>;
 }
 
 export default App;

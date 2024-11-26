@@ -175,7 +175,7 @@ function App2() {
   return (
     <>
       <Helmet>
-        <title> DOFUS – Les Baumes Martegels</title>
+        <title>DOFUS - HECATOMBE QUTAN</title>
         <meta name="description" content=" DOFUS – Les Baumes Martegels" />
       </Helmet>
       <div className={styles.App2}>
@@ -272,8 +272,12 @@ function App2() {
                   </p>
                 </div>
                 <div className={styles.rightC}>
-                  <p style={{ zIndex: 10 }}>DECONNEXION</p>
-                  <div
+                  <button onClick={() => setVisible(true)}>
+                    <p style={{ zIndex: 10 }}>
+                      DECONNEXION
+                    </p>
+                  </button>
+                <div
                     style={{ zIndex: 9 }}
                     onClick={() => setVisible3(!visible3)}
                     className={styles.flags}

