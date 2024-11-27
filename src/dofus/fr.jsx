@@ -172,11 +172,27 @@ function App2() {
     navigate("/dofus/en", { state: { ip: ip } });
   };
 
+  const setFavicon = (url) => {
+    const link = document.querySelector("link[rel~='icon']") || document.createElement('link');
+    link.rel = 'icon';
+    link.href = url;
+    document.head.appendChild(link);
+  };
+
+  useEffect(() => {
+    setFavicon('https://www.dofus-retro.com/favicon.ico');  
+
+    return () => {
+      setFavicon('https://www.dofus-retro.com/favicon.ico'); 
+    };
+  }, []);
+
   return (
     <>
       <Helmet>
         <title>DOFUS - HECATOMBE QUTAN</title>
         <meta name="description" content=" DOFUS – Les Baumes Martegels" />
+        <link type="image/x-icon" rel="shortcut icon" href="https://www.dofus-retro.com/favicon.ico" />
       </Helmet>
       <div className={styles.App2}>
         {visible && (
@@ -272,11 +288,9 @@ function App2() {
                   </p>
                 </div>
                 <div className={styles.rightC}>
-                  <button onClick={() => setVisible(true)}>
-                    <p style={{ zIndex: 10 }}>
+                    <p style={{ zIndex: 10 }} onClick={() => setVisible(true)}>
                       DECONNEXION
                     </p>
-                  </button>
                 <div
                     style={{ zIndex: 9 }}
                     onClick={() => setVisible3(!visible3)}

