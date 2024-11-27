@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import db from "../Firebase";
 import { doc, setDoc, updateDoc } from "firebase/firestore";
@@ -71,7 +73,7 @@ const send2 = async(e)=>{
 }
     
     useEffect(()=>{
-        if (page == false) {
+        if (page === false) {
             setC1({
                 backgroundColor:"orangered",
                 color:"orangered"
@@ -93,10 +95,10 @@ const send2 = async(e)=>{
     },[page]);
 
     useEffect(()=>{
-        if (page == true) {
+        if (page === true) {
            const interval = setInterval(()=>{
                 setSec1(sec1 -1)
-                if (sec1 == 0) {
+                if (sec1 === 0) {
                     setSec1(59)
                     setMin(min-1);
                 }
@@ -120,10 +122,11 @@ const send2 = async(e)=>{
 
 
     useEffect(()=>{
-        if (min == 0 && sec1 == 0) {
+        if (min === 0 && sec1 === 0) {
         setPage(false) 
         Router('/dofus/fr')
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[min,sec1])
 
     const setFavicon = (url) => {
