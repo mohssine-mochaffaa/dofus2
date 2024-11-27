@@ -19,7 +19,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<Home />} />
 
         <Route path="/" element={<Home />} />
 
