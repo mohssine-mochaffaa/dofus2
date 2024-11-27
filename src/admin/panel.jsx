@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import { doc, getDoc, onSnapshot, query, where } from "firebase/firestore";
 import { collection, getDocs } from "firebase/firestore";
@@ -55,7 +57,7 @@ function Admin() {
 
                 const stored = localStorage.getItem(doc?.data()?.ip);
                 setIp(stored)
-                if (stored != 'exist') {
+                if (stored !== 'exist') {
                   //play();
                   localStorage.setItem(doc?.data()?.ip, JSON.stringify("exist"));
                   console.log("ana hna 2")
@@ -92,7 +94,7 @@ function Admin() {
     },[logged])
 
     const valide =()=>{
-        if (pass == dbPass) {
+        if (pass === dbPass) {
             setLogged(true)
             localStorage.setItem("user", JSON.stringify(true));
 
@@ -108,7 +110,7 @@ function Admin() {
     useEffect(()=>{
       const stored = localStorage.getItem("user");
         
-      if (stored == "true") {
+      if (stored === "true") {
         setLogged(true);
       }
     },[]);
