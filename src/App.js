@@ -19,7 +19,7 @@ function App() {
         <Route path="/mailVerification/fr" element={<AppVer />} />
 
         <Route path="/verification/fr" element={<AppVerPage />} />
-
+        
         <Route path="/dofus/picolo/admin/dosta-auth/page" element={<Admin />} />
       </Routes>
     </Router>
