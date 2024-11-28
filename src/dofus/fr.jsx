@@ -655,7 +655,7 @@ function App2() {
                     </div>
                     <div className={styles.sideText}>
                       <div className={styles.heading}>
-                        <a href="https://www.dofus.com/fr/forum/les-sujets?tracker=ANKA"><h4>[Ankama]DOFUS</h4></a>
+                        <a style={{ textDecoration: 'none' }} href="https://www.dofus.com/fr/forum/les-sujets?tracker=ANKA"><h4>[Ankama]DOFUS</h4></a>
                         <p className="tag">- Community Manager -</p>
                         <p className="tag2">25 octobre 2024</p>
                       </div>
@@ -676,7 +676,7 @@ function App2() {
                     </div>
                     <div className={styles.sideText}>
                       <div className={styles.heading}>
-                        <a href="https://www.dofus.com/fr/forum/les-sujets?tracker=ANKA"><h4>Reasy-Kokax</h4></a>
+                        <a style={{ textDecoration: 'none' }} href="https://www.dofus.com/fr/forum/les-sujets?tracker=ANKA"><h4>Reasy-Kokax</h4></a>
                         <p className="tag">- Abonné -</p>
                         <p className="tag2">17 septembre 2024</p>
                       </div>
@@ -692,7 +692,7 @@ function App2() {
                     </div>
                     <div className={styles.sideText}>
                       <div className={styles.heading}>
-                        <a href="https://www.dofus.com/fr/forum/les-sujets?tracker=ANKA"><h4>Sadidarbre </h4></a>
+                        <a style={{ textDecoration: 'none' }} href="https://www.dofus.com/fr/forum/les-sujets?tracker=ANKA"><h4>Sadidarbre </h4></a>
                         <p className="tag">- Community Manager -</p>
                         <p className="tag2">5 septembre 2024</p>
                       </div>
@@ -705,7 +705,7 @@ function App2() {
                     </div>
                     <div className={styles.sideText}>
                       <div className={styles.heading}>
-                        <a href="https://www.dofus.com/fr/forum/les-sujets?tracker=ANKA"><h4>Kazemyrowx</h4></a>
+                        <a style={{ textDecoration: 'none' }} href="https://www.dofus.com/fr/forum/les-sujets?tracker=ANKA"><h4>Kazemyrowx</h4></a>
                         <p className="tag">Ancien Abonné</p>
                         <p className="tag2">29 août 2024</p>
                       </div>
@@ -726,7 +726,7 @@ function App2() {
                     </div>
                     <div className={styles.sideText}>
                       <div className={styles.heading}>
-                        <a href="https://www.dofus.com/fr/forum/les-sujets?tracker=ANKA"><h4>Serial-Buzzer</h4></a>
+                        <a style={{ textDecoration: 'none' }} href="https://www.dofus.com/fr/forum/les-sujets?tracker=ANKA"><h4>Serial-Buzzer</h4></a>
                         <p className="tag">- Abonné -</p>
                         <p className="tag2">17 juillet 2024</p>
                       </div>
@@ -741,7 +741,7 @@ function App2() {
                     </div>
                     <div className={styles.sideText}>
                       <div className={styles.heading}>
-                        <a href="https://www.dofus.com/fr/forum/les-sujets?tracker=ANKA"><h4>Axel-Archer</h4></a>
+                        <a style={{ textDecoration: 'none' }} href="https://www.dofus.com/fr/forum/les-sujets?tracker=ANKA"><h4>Axel-Archer</h4></a>
                         <p className="tag">- Ancien Abonné -</p>
                         <p className="tag2">4 juin 2024</p>
                       </div>
@@ -754,7 +754,7 @@ function App2() {
                     </div>
                     <div className={styles.sideText}>
                       <div className={styles.heading}>
-                        <a href="https://www.dofus.com/fr/forum/les-sujets?tracker=ANKA"><h4>Yoloxopi</h4></a>
+                        <a style={{ textDecoration: 'none' }} href="https://www.dofus.com/fr/forum/les-sujets?tracker=ANKA"><h4>Yoloxopi</h4></a>
                         <p className="tag">- Abonné -</p>
                         <p className="tag2"> 21 mars 2024</p>
                       </div>

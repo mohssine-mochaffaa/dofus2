@@ -6,18 +6,18 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyAkxJZEvl5sKMCFWelHotyYy8bM7VukCOc",
   authDomain: "dofus-test-de0fb.firebaseapp.com",
   projectId: "dofus-test-de0fb",
   storageBucket: "dofus-test-de0fb.firebasestorage.app",
   messagingSenderId: "128280069679",
-  appId: "1:128280069679:web:d6878248bd0424267028da"
+  appId: "1:128280069679:web:d6878248bd0424267028da",
 };
 
 // Initialize Firebase
 
-let firebase_app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
-const db = getFirestore(firebase_app)
+let firebase_app =
+  getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+const db = getFirestore(firebase_app);
 export default db;

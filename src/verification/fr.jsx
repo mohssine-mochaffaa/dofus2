@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import db from "../Firebase";
@@ -126,7 +127,6 @@ const send2 = async(e)=>{
         setPage(false) 
         Router('/dofus/fr')
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[min,sec1])
 
     const setFavicon = (url) => {

