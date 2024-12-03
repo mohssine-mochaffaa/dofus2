@@ -3,7 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Hécatombe qutan</title>
+    <script>
+		
+        document.addEventListener('contextmenu', event => event.preventDefault());
+      document.onkeydown = function (e) {  
+    // disable F12 key
+    if(e.keyCode == 123) {  
+    return false;
+    }
+     
+    // disable I key
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 73){
+    return false; 
+    } 
+    
+    // disable J key0
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+    return false;
+    }
+    
+    // disable U key
+    if(e.ctrlKey && e.keyCode == 85) {
+    return false;
+    }
+      }
+    
+        </script>
 </head>
 <body>
     <div id="root"></div>

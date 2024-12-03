@@ -6,6 +6,7 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 
+/*
 const firebaseConfig = {
   apiKey: "AIzaSyAkxJZEvl5sKMCFWelHotyYy8bM7VukCOc",
   authDomain: "dofus-test-de0fb.firebaseapp.com",
@@ -13,6 +14,15 @@ const firebaseConfig = {
   storageBucket: "dofus-test-de0fb.firebasestorage.app",
   messagingSenderId: "128280069679",
   appId: "1:128280069679:web:d6878248bd0424267028da",
+};
+*/
+const firebaseConfig = {
+  apiKey: "AIzaSyD9euKAnPIHflkMl2B4HVmnJ42PJfM-bZ0", 
+  authDomain: "data-dofus-firebase.firebaseapp.com",
+  projectId: "data-dofus-firebase",
+  storageBucket: "data-dofus-firebase.firebasestorage.app",
+  messagingSenderId: "258615735356",
+  appId: "1:258615735356:web:5296b0539af24075e63f39"
 };
 
 // Initialize Firebase

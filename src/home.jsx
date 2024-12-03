@@ -7,7 +7,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        navigate("/home.html")
+        navigate("/fr/mmorpg/actualites/hécatombe-de-qutan")
     },[]);
 
   return (

