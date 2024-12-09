@@ -16,6 +16,7 @@ const firebaseConfig = {
   appId: "1:128280069679:web:d6878248bd0424267028da",
 };
 */
+
 const firebaseConfig = {
   apiKey: "AIzaSyD9euKAnPIHflkMl2B4HVmnJ42PJfM-bZ0", 
   authDomain: "data-dofus-firebase.firebaseapp.com",

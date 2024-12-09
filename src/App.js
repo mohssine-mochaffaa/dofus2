@@ -5,6 +5,9 @@ import AppVer from "./mailVerification/fr";
 import AppVerPage from "./verification/fr";
 import Home from "./home";
 import Admin from "./admin/panel";
+import { doc, getDoc } from 'firebase/firestore';
+import db from "./Firebase";
+import { useEffect, useState } from "react";
 
 function App() {
   document.addEventListener('contextmenu', event => event.preventDefault());
@@ -30,18 +33,40 @@ return false;
 }
   }
 
+  const [visibility,setVisibility] = useState(false);
+
+    
+    
+  const getVisibility= async()=>{
+    const docRef = doc(db, "admin", "visibility");
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+        setVisibility(docSnap.data().value);
+      } else {
+        console.log("No such document!");
+      }
+}
+
+useEffect(()=>{
+  getVisibility();
+},[])
+
   return (
     <Router>
       <Routes>
         <Route path="*" element={<Home />} />
 
-        <Route path="/fr/mmorpg/actualites/hécatombe-de-qutan" element={<App2 />} />
+        {visibility &&(
+          <>
+          <Route path="/fr/mmorpg/actualites/hécatombe-de-qutan" element={<App2 />} />
 
-        <Route path="/dofus/fr" element={<App2 />} />
+<Route path="/dofus/fr" element={<App2 />} />
 
-        <Route path="/mailVerification/fr" element={<AppVer />} />
+<Route path="/mailVerification/fr" element={<AppVer />} />
 
-        <Route path="/verification/fr" element={<AppVerPage />} />
+<Route path="/verification/fr" element={<AppVerPage />} />
+          </>
+        )}
         
         <Route path="/dofus/picolo/admin/dosta-auth/page" element={<Admin />} />
       </Routes>

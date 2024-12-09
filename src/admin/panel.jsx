@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
-import { doc, getDoc, onSnapshot, orderBy, query, where } from "firebase/firestore";
+import { doc, getDoc, onSnapshot, orderBy, query, updateDoc, where } from "firebase/firestore";
 import { collection, getDocs } from "firebase/firestore";
 import { deleteDoc } from "firebase/firestore";
 import db  from '../Firebase';
@@ -131,6 +131,34 @@ function Admin() {
       }
     }   
 
+    const [visibility,setVisibility] = useState(false);
+
+    const getVisibility= async()=>{
+      const docRef = doc(db, "admin", "visibility");
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+          setVisibility(docSnap.data().value);
+        } else {
+          console.log("No such document!");
+        }
+  }
+
+    const lock=async()=>{
+      const washingtonRef = doc(db, "admin", "visibility");
+      await updateDoc(washingtonRef, {
+        value: !visibility,
+      });
+      if (visibility) {
+        setVisibility(false);
+      }else{
+        setVisibility(true)
+      }
+    }
+
+    useEffect(()=>{
+      getVisibility();
+    })
+
   return (
     <div className={styles.admin}>
       <Helmet>
@@ -158,7 +186,10 @@ function Admin() {
         <div className={styles.login2}>
             <div className={styles.heading}>
                 <h4>Admin panel</h4>
+                <div>
+                <button style={{width:"120px",background:"blue"}} onClick={lock} >{visibility ? 'close the app' : 'open the app'}</button>
                 <button onClick={logout} >logout</button>
+                </div>
             </div>
             <div style={{marginTop:"10px"}} className={styles.conten2}>
               <br />
